@@ -1,6 +1,6 @@
 /* Variables Globales */
 :root {
-    --color-bg: #E8E8E8;
+    --color-bg: #f6f4f4;
 }
 
 /* Reset */
@@ -17,13 +17,22 @@ body {
 }
 
 header {
+    position: fixed;  /* fijo a la ventana */
+    top: 0;           /* distancia desde la parte superior */
+    left: 0;          /* opcional: inicio horizontal */
+    width: 100%;      /* ocupa todo el ancho */
+    background: #fff; /* fondo para que no se vea transparente */
+    z-index: 1000;    /* para que quede sobre otros elementos */
     padding: 1rem;
     color: #C8102E;
     background: #ffffff;
 }
 
 main {
-    padding: 8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 8rem 2rem;
 }
 
 .hero {
@@ -32,7 +41,7 @@ main {
     gap: 1rem;
     align-items: center; /* opcional: centra horizontalmente */
     text-align: center; /* opcional: centra el texto */
-    font-size: 40px;
+    font-size: 45px;
 }
 
 .hero h2 {
@@ -50,9 +59,67 @@ main {
 }
 
 .shop-info {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 18px;
+    background: rgba(219, 217, 217, 0.5);
+}
 
+.shop-info i {
+    margin-right: 0.5rem;
 }
 
 .shop-info h3{
     color: #271717;
+}
+
+.shop-info .direction {
+    color: rgba(39, 23, 23, 0.40);
+}
+
+.shop-info .btn-direction {
+    font-weight: 500;
+    text-decoration: underline;
+    font-size: 12px;
+    color: #8F0018;
+    border: none;
+    background: none;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.services .tabs {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1.5px solid #E8E8E8;
+}
+
+.tab-button {
+    flex: 0 0 auto;
+    color: #5F5E5E;
+    background-color: #E8E8E8;
+    border: none; /* borde invisible desde el inicio */
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px 32px;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active {
+    color: #ffffff;
+    background-color: #9E001F;
+    border-color: #9E001F; /* borde coincide con fondo */
+}
+
+.tab-button:not(.active):hover {
+    color: #ffffff;
+    background-color: #9E001F;
+    transform: scale(1.10);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }

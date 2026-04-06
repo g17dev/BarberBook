@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,26 +25,34 @@
     </section>
 
     <section class="shop-info">
-      <h3>Barbería El Inge • Av. Insurgentes 123</h3>
+      <h3>
+        <i class="fa-solid fa-location-dot" style="color: rgb(143, 0, 24);"></i>
+        Barbería El Inge •
+        <span class="direction">Av. Insurgentes 123</span>
+      </h3>
+      <button class="btn-direction">
+        Ver en mapa
+      </button>
     </section>
 
     <section class="services">
       <div class="tabs">
-        <button class="tablinks">Corte</button>
-        <button class="tablinks">Barba</button>
-        <button class="tablinks">Facial</button>
-        <button class="tablinks">Combos</button>
+        <button class="tab-button active">Corte</button>
+        <button class="tab-button">Barba</button>
+        <button class="tab-button">Facial</button>
+        <button class="tab-button">Combos</button>
       </div>
 
-      <div class="tabcontent">Corte</div>
+      <!-- <div class="tabcontent">Corte</div>
       <div class="tabcontent">Barba</div>
       <div class="tabcontent">Facial</div>
-      <div class="tabcontent">Combos</div>
+      <div class="tabcontent">Combos</div> -->
     </section>
   </main>
 
   <footer class="footer">
     <h2>Resumen de selección</h2>
   </footer>
+  <script src="js/services.js"></script>
 </body>
 </html>
