@@ -139,6 +139,24 @@ main {
     cursor: pointer;
 }
 
+/* Entrada de cards */
+.service-card {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.service-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+
+/* Animación al seleccionar */
+.service-card-inner.selected {
+  border: 2px solid #9E001F;
+  box-shadow: 0 0 10px rgba(158, 0, 31, 0.4);
+}
+
 .service-card-inner {
     position: relative;
     display: flex;
@@ -150,7 +168,7 @@ main {
     padding: 2rem;
     gap: 2rem;
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .service-card-inner:hover {
@@ -160,6 +178,7 @@ main {
 /* Seleccionado */
 .service-card-inner.selected {
   border: 2px solid #9E001F;
+  box-shadow: 0 4px 10px rgba(158, 0, 31, 0.2);
 }
 
 /* Top */
@@ -174,6 +193,7 @@ main {
     background-color: #E8E8E8;
     padding: 25px;
     border-radius: 10px;
+    transition: all 0.2s ease;
 }
 
 .service-card:hover .service-icon {

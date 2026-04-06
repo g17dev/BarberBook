@@ -68,7 +68,9 @@ tabs.forEach(tab => {
     tab.classList.add("active");
 
     const category = tab.dataset.tab;
-    renderServices(category);
+
+    renderServices(category);   // 🧱 render limpio
+    animateCards();             // 🎬 animación entrada
   });
 });
 
@@ -84,7 +86,7 @@ function renderServices(category) {
       <div class="service-card-inner ${service.check ? "selected" : ""}">
         <div class="service-top">
           <i class="${service.icon} service-icon"></i>
-          ${service.check ? '<i class="fa-solid fa-circle-check check" style="color: #9e0020;"></i>' : ""}
+          ${service.check ? '<i class="fa-solid fa-circle-check check"></i>' : ""}
         </div>
 
         <div class="service-description">
@@ -99,15 +101,43 @@ function renderServices(category) {
       </div>
     `;
 
-    // Click en card
-    card.addEventListener("click", () => {
-      service.check = !service.check;
-      renderServices(category);
-    });
+    // 👉 manejar selección independiente
+    handleCardSelection(card, service, category);
 
     container.appendChild(card);
   });
 }
 
-// Inicial
+function animateCards() {
+  const cards = document.querySelectorAll(".service-card");
+
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 70);
+  });
+}
+
+function handleCardSelection(card, service, category) {
+  card.addEventListener("click", () => {
+  service.check = !service.check;
+
+  const inner = card.querySelector(".service-card-inner");
+  inner.classList.toggle("selected");
+
+  let check = card.querySelector(".check");
+
+  if (service.check && !check) {
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-circle-check check";
+    icon.style.color = "#9e0020";
+
+    card.querySelector(".service-top").appendChild(icon);
+  } else if (!service.check && check) {
+    check.remove();
+  }
+});
+}
+
 renderServices();
+animateCards();
