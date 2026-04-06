@@ -128,6 +128,122 @@ main {
   display: none;
 }
 
-.tabcontent:first-of-type {
-  display: block; /* mostrar el primero por default */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.service-card {
+    cursor: pointer;
+}
+
+.service-card-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    aspect-ratio: 1/1;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    gap: 2rem;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card-inner:hover {
+  transform: scale(1.03);
+}
+
+/* Seleccionado */
+.service-card-inner.selected {
+  border: 2px solid #9E001F;
+}
+
+/* Top */
+.service-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-icon {
+    font-size: 30px;
+    color: #5C403F;
+    background-color: #E8E8E8;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.service-card:hover .service-icon {
+    color: #9E001F;
+    background-color: #FFDAD8;
+}
+
+.service-card-inner.selected .service-icon {
+  color: #9E001F;
+  background-color: #FFDAD8;
+}
+
+/* Check */
+.check {
+  position: absolute;
+  top: 20px;
+  right: 20px;  
+  font-size: 28px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s ease;
+}
+
+.service-card-inner.selected .check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-description {
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    gap: 5px;
+}
+
+.service-description h3 {
+    font-weight: 700;
+    font-size: 25px;
+    color: #1A1C1C;
+}
+
+.service-description p {
+    font-weight: 500;
+    font-size: 18px;
+    color: #5C403F;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1.5px solid #E8E8E8;
+}
+
+.service-price {
+  font-weight: 600;
+  font-size: 24px;
+  color: #9E001F;
+}
+
+.service-timer {
+  font-weight: 400;
+  font-size: 20px;
+  color: #5C403F;
+}
+
+.service-card:hover {
+    border: 1px solid #9E001F;
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgb(158, 0, 31)
 }
