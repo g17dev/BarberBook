@@ -267,3 +267,53 @@ main {
     transform: scale(1.02);
     box-shadow: 0 4px 10px rgb(158, 0, 31)
 }
+
+.footer {
+    position: fixed;  /* fijo a la ventana */
+    display: flex;
+    bottom: 0;           /* distancia desde la parte superior */
+    left: 0;          /* opcional: inicio horizontal */
+    width: 100%;      /* ocupa todo el ancho */
+    background: #fff; /* fondo para que no se vea transparente */
+    z-index: 1000;    /* para que quede sobre otros elementos */
+    padding: 2rem;
+    background: #ffffff;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info-summary h3 {
+    font-weight: 400;
+    font-size: 18px;
+    color: #5C403F;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.action-buttons .cancel {
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    color: #1A1C1C;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+}
+
+.action-buttons .continue {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    background: #9E001F;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+}
