@@ -45,12 +45,12 @@ main {
     /* El texto nunca será menor a 1.5rem, 
      intentará medir el 5% del ancho de la pantalla (5vw), 
      y nunca será mayor a 4rem */
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 .hero h2 {
     color: #1A1C1C;
-    text-align: start; /* opcional: centra el texto */
+    text-align: center; /* opcional: centra el texto */
 }
 
 .hero .pregunta {
@@ -62,7 +62,7 @@ main {
     font-weight: 600;
     color: #5C403F;
     /* font-size: 24px; */
-    font-size: clamp(1rem, 5vw, 1.5rem);
+    font-size: clamp(0.7rem, 5vw, 1.5rem);
 }
 
 .shop-info {
@@ -148,36 +148,35 @@ main {
   padding-top: 1rem;
 }
 
-.service-card {
-    cursor: pointer;
-}
-
 /* Entrada de cards */
 .service-card {
+  cursor: pointer;
   opacity: 0;
   transform: translateY(15px);
 }
 
 .service-card.show {
   opacity: 1;
+  border-radius: 12px;
   transform: translateY(0);
   transition: all 0.4s ease;
 }
 
 /* Animación al seleccionar */
 .service-card-inner.selected {
-  border: 2px solid #9E001F;
+  border-radius: 12px;
+  border: 1px solid #9E001F;
   box-shadow: 0 0 10px rgba(158, 0, 31, 0.4);
 }
 
 .service-card-inner {
+    border-radius: 12px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: end;
     aspect-ratio: 1/1;
     background: #ffffff;
-    border-radius: 12px;
     padding: 2rem;
     gap: 2rem;
     transition: all 0.2s ease;
@@ -185,12 +184,8 @@ main {
 
 .service-card-inner:hover {
   transform: scale(1.03);
-}
-
-/* Seleccionado */
-.service-card-inner.selected {
   border: 2px solid #9E001F;
-  box-shadow: 0 4px 10px rgba(158, 0, 31, 0.2);
+  box-shadow: 0 4px 10px rgb(158, 0, 31)
 }
 
 /* Top */
@@ -272,12 +267,6 @@ main {
   font-weight: 400;
   font-size: 20px;
   color: #5C403F;
-}
-
-.service-card:hover {
-    border: 1px solid #9E001F;
-    transform: scale(1.02);
-    box-shadow: 0 4px 10px rgb(158, 0, 31)
 }
 
 .footer {
