@@ -276,11 +276,21 @@ main {
     width: 100%;      /* ocupa todo el ancho */
     background: #fff; /* fondo para que no se vea transparente */
     z-index: 1000;    /* para que quede sobre otros elementos */
-    padding: 2rem;
-    background: #ffffff;
+    padding: 1.5rem;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    opacity: 0;
+    visibility: hidden; /* Evita que se pueda hacer clic mientras es invisible */
+    transform: translateY(100%); /* Empieza 20px más abajo */
+    transition: all 0.4s ease-in-out;
+    border-radius: 20px 20px 0 0;
+}
+
+.footer.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Sube a su posición original */
 }
 
 .info-summary h3 {
@@ -288,6 +298,13 @@ main {
     font-size: 18px;
     color: #5C403F;
 }
+
+.info-summary p {
+    font-weight: 700;
+    font-size: 24px;
+    color: #1A1C1C;
+}
+
 
 .action-buttons {
     display: flex;
@@ -302,6 +319,18 @@ main {
     color: #1A1C1C;
     padding: 1rem 2rem;
     border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .cancel:hover {
+    transform: scale(1.10);
+    border: 0.5px solid #a5abab;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.action-buttons .cancel:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .action-buttons .continue {
@@ -316,4 +345,15 @@ main {
     border: none;
     padding: 1rem 2rem;
     border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .continue:hover {
+    transform: scale(1.10);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.action-buttons .continue:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
