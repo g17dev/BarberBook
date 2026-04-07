@@ -123,19 +123,31 @@ function actualizarResumen(cantidad, precio) {
 }
 
 function resetearTodo() {
-  // 1. Reset lógico
+  // 1. Reset lógico: Imprescindible para que al cambiar de pestaña no vuelvan a aparecer
   Object.keys(services).forEach(key => {
     services[key].forEach(s => s.check = false);
   });
 
-  // 2. Visual: Detectar pestaña activa para limpiar cards
-  const activeTab = document.querySelector(".tab-button.active");
-  const categoriaActual = activeTab ? activeTab.dataset.tab : "corte";
-  renderServices(categoriaActual);
+  // 2. Limpieza visual sutil del DOM actual
+  // Buscamos todas las tarjetas que tengan la clase 'selected' actualmente
+  const selectedCards = document.querySelectorAll(".service-card-inner.selected");
 
-  // 3. Reset footer
+  selectedCards.forEach(inner => {
+    // Quitamos la clase 'selected' (esto activa la transición CSS de salida)
+    inner.classList.remove("selected");
+
+    // Buscamos el icono del check dentro de esta tarjeta y lo eliminamos
+    // (O si prefieres animar su desaparición antes de borrarlo):
+    const checkIcon = inner.querySelector(".check");
+    if (checkIcon) {
+      checkIcon.remove(); 
+    }
+  });
+
+  // 3. Reset footer: Oculta el footer y pone contadores a cero
   calcularYActualizar();
 }
+
 
 // --- EVENTOS ---
 
