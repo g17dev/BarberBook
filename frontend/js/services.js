@@ -1,82 +1,33 @@
-// Tabs
-const tabs = document.querySelectorAll(".tab-button");
-
-// Container
-const container = document.getElementById("services-container");
-
 // Data
 const services = {
   corte: [
-    {
-      id: 1,
-      name: "Fade",
-      description: "Corte moderno degradado",
-      price: 120,
-      time: 60,
-      icon: "fa-solid fa-scissors",
-      check: false
-    },
-    {
-      id: 2,
-      name: "Clásico",
-      description: "Corte tradicional",
-      price: 100,
-      time: 60,
-      icon: "fa-solid fa-user",
-      check: false
-    }
+    { id: 1, name: "Fade", description: "Corte moderno degradado", price: 120, time: 60, icon: "fa-solid fa-scissors", check: false },
+    { id: 2, name: "Clásico", description: "Corte tradicional", price: 100, time: 60, icon: "fa-solid fa-user", check: false }
   ],
   barba: [
-    {
-      id: 3,
-      name: "Barba completa",
-      description: "Arreglo profesional",
-      price: 80,
-      time: 40,
-      icon: "fa-solid fa-user-beard",
-      check: false
-    }
+    { id: 3, name: "Barba completa", description: "Arreglo profesional", price: 80, time: 40, icon: "fa-solid fa-user-beard", check: false }
   ],
   facial: [
-    {
-      id: 4,
-      name: "Limpieza facial",
-      description: "Cuidado de piel",
-      price: 150,
-      time: 50,
-      icon: "fa-solid fa-face-smile",
-      check: false
-    }
+    { id: 4, name: "Limpieza facial", description: "Cuidado de piel", price: 150, time: 50, icon: "fa-solid fa-face-smile", check: false }
   ],
   combos: [
-    {
-      id: 5,
-      name: "Corte + barba",
-      description: "Servicio completo",
-      price: 180,
-      time: 90,
-      icon: "fa-solid fa-star",
-      check: false
-    }
+    { id: 5, name: "Corte + barba", description: "Servicio completo", price: 180, time: 90, icon: "fa-solid fa-star", check: false }
   ]
 };
 
-// Tabs click
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
+// Selectores
+const tabs = document.querySelectorAll(".tab-button");
+const container = document.getElementById("services-container");
 
-    const category = tab.dataset.tab;
+// --- FUNCIONES CORE ---
 
-    renderServices(category);   // 🧱 render limpio
-    animateCards();             // 🎬 animación entrada
-  });
-});
-
-// Render
 function renderServices(category) {
-  container.innerHTML = "";
+  // Verificación de seguridad para evitar el error 'undefined'
+  if (!category || !services[category]) {
+    
+  }
+  else {
+    container.innerHTML = "";
 
   services[category].forEach(service => {
     const card = document.createElement("div");
@@ -86,14 +37,12 @@ function renderServices(category) {
       <div class="service-card-inner ${service.check ? "selected" : ""}">
         <div class="service-top">
           <i class="${service.icon} service-icon"></i>
-          ${service.check ? '<i class="fa-solid fa-circle-check check"></i>' : ""}
+          ${service.check ? '<i class="fa-solid fa-circle-check check" style="color: #9e0020;"></i>' : ""}
         </div>
-
         <div class="service-description">
           <h3>${service.name}</h3>
           <p>${service.description}</p>
         </div>
-
         <div class="service-info">
           <span class="service-price">$${service.price}</span>
           <span class="service-timer">${service.time}MIN</span>
@@ -101,16 +50,31 @@ function renderServices(category) {
       </div>
     `;
 
-    // 👉 manejar selección independiente
     handleCardSelection(card, service, category);
-
     container.appendChild(card);
+  });
+  }
+}
+
+function handleCardSelection(card, service, category) {
+  card.addEventListener("click", () => {
+    service.check = !service.check;
+    
+    // 1. Dibujamos las tarjetas de nuevo
+    renderServices(category);
+    
+    // 2. ¡IMPORTANTE! Las tarjetas nuevas nacen ocultas, hay que animarlas:
+    const cards = document.querySelectorAll(".service-card");
+    cards.forEach(c => c.classList.add("show")); // Las mostramos de golpe sin delay para que sea fluido
+    
+    // 3. Actualizamos el footer
+    calcularYActualizar();
   });
 }
 
+
 function animateCards() {
   const cards = document.querySelectorAll(".service-card");
-
   cards.forEach((card, index) => {
     setTimeout(() => {
       card.classList.add("show");
@@ -118,26 +82,77 @@ function animateCards() {
   });
 }
 
-function handleCardSelection(card, service, category) {
-  card.addEventListener("click", () => {
-  service.check = !service.check;
+function calcularYActualizar() {
+  let cantidadTotal = 0;
+  let precioTotal = 0;
 
-  const inner = card.querySelector(".service-card-inner");
-  inner.classList.toggle("selected");
+  Object.values(services).forEach(categoria => {
+    categoria.forEach(servicio => {
+      if (servicio.check) {
+        cantidadTotal++;
+        precioTotal += servicio.price;
+      }
+    });
+  });
 
-  let check = card.querySelector(".check");
-
-  if (service.check && !check) {
-    const icon = document.createElement("i");
-    icon.className = "fa-solid fa-circle-check check";
-    icon.style.color = "#9e0020";
-
-    card.querySelector(".service-top").appendChild(icon);
-  } else if (!service.check && check) {
-    check.remove();
-  }
-});
+  actualizarResumen(cantidadTotal, precioTotal);
 }
 
+function actualizarResumen(cantidad, precio) {
+  const footer = document.querySelector(".footer");
+  const elCantidad = document.getElementById('cantidad');
+  const elTotal = document.getElementById('total');
+  let textoCantidad = "";
+
+  if (cantidad > 0) {
+    footer.classList.add('visible');
+    textoCantidad = (cantidad === 1) 
+      ? "1 Servicio Seleccionado" 
+      : `${cantidad} Servicios Seleccionados`;
+  } else {
+    footer.classList.remove('visible');
+  }
+
+  if (elCantidad && elTotal) {
+    elCantidad.textContent = textoCantidad;
+    elTotal.textContent = precio.toFixed(2);
+  }
+}
+
+function resetearTodo() {
+  // 1. Reset lógico
+  Object.keys(services).forEach(key => {
+    services[key].forEach(s => s.check = false);
+  });
+
+  // 2. Visual: Detectar pestaña activa para limpiar cards
+  const activeTab = document.querySelector(".tab-button.active");
+  const categoriaActual = activeTab ? activeTab.dataset.tab : "corte";
+  renderServices(categoriaActual);
+
+  // 3. Reset footer
+  calcularYActualizar();
+}
+
+// --- EVENTOS ---
+
+// Delegación para botón cancelar
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".cancel")) {
+    resetearTodo();
+  }
+});
+
+// Click en Tabs
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    renderServices(tab.dataset.tab);
+    animateCards();
+  });
+});
+
+// --- INICIALIZACIÓN ---
 renderServices();
 animateCards();
