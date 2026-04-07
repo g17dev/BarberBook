@@ -330,6 +330,7 @@ main {
     cursor: pointer;
     font-weight: 700;
     border: none;
+    background: #E8E8E8;
     color: #1A1C1C;
     padding: 1rem 2rem;
     border-radius: 12px;
@@ -338,8 +339,7 @@ main {
 
 .action-buttons .cancel:hover {
     transform: scale(1.10);
-    border: 0.5px solid #a5abab;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .action-buttons .cancel:active {
