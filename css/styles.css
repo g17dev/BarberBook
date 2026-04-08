@@ -32,7 +32,7 @@ header {
 main {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.5rem;
     padding: 6rem 1rem;
 }
 
@@ -45,61 +45,70 @@ main {
     /* El texto nunca será menor a 1.5rem, 
      intentará medir el 5% del ancho de la pantalla (5vw), 
      y nunca será mayor a 4rem */
-    font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 .hero h2 {
     color: #1A1C1C;
     text-align: center; /* opcional: centra el texto */
+    font-size: 2.5rem;
 }
 
 .hero .pregunta {
-  color: rgba(0, 0, 0, 0.54);
-  text-align: center; /* opcional: centra el texto */
+    color: rgba(0, 0, 0, 0.54);
+    text-align: center; /* opcional: centra el texto */
+    font-size: 2.5rem;
 }
 
 .hero p {
     font-weight: 600;
     color: #5C403F;
-    /* font-size: 24px; */
-    font-size: clamp(0.7rem, 5vw, 1.5rem);
+    font-size: 1rem;
+    /* font-size: clamp(0.6rem, 5vw, 1.5rem); */
 }
 
 .shop-info {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 12px;
     padding: 8px 1rem;
     background: #F3F3F3; /* Un gris muy suave como el diseño */
     border-radius: 12px;
-    margin-top: 1rem;
     font-weight: 600;
-    font-size: clamp(0.8rem, 3vw, 1rem);
     background: rgba(219, 217, 217, 0.5);
+    margin-top: 1rem;
 }
 
 .shop-info i {
-    margin-right: 0.5rem;
-    font-size: 1rem;
+    font-size: 20px;
+}
+
+.direction-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .shop-info h3{
+    font-size: clamp(0.8rem, 3vw, 1rem);
     color: #271717;
 }
 
 .shop-info .direction {
+    font-size: 13px;
     color: rgba(39, 23, 23, 0.40);
 }
 
 .shop-info .btn-direction {
     font-weight: 600;
     text-decoration: underline;
-    font-size: 12px;
+    font-size: 10px;
     color: #8F0018;
     border: none;
     background: none;
-    margin-left: auto;
     cursor: pointer;
+    margin-left: 0;     
+    text-align: left;
+    padding: 0; 
 }
 
 .services .tabs {
