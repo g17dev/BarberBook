@@ -331,9 +331,11 @@ main {
     width: 100%;      /* ocupa todo el ancho */
     background: #fff; /* fondo para que no se vea transparente */
     z-index: 1000;    /* para que quede sobre otros elementos */
-    padding: 1.5rem;
-    align-items: center;
-    flex-direction: row;
+    padding: 1rem;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
     justify-content: space-between;
     opacity: 0;
     visibility: hidden; /* Evita que se pueda hacer clic mientras es invisible */
@@ -344,24 +346,69 @@ main {
     border-top: 1px solid #f0f0f0;
 }
 
+.footer-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1rem;
+    gap: 1.5rem;
+}
+
+.info-price h3 {
+    font-weight: 700;
+    font-size: 14px;
+    color: #5C403F;
+}
+
+.info-price p {
+    font-weight: 800;
+    font-size: 24px;
+    color: #1A1C1C;
+}
+
+.info-services {
+    text-align: right;
+}
+
+.info-services h3 {
+    font-weight: 700;
+    font-size: 14px;
+    color: #5C403F;
+}
+
+.info-services p {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1A1C1C;
+}
+
+/* Ajuste de botones para que se vean como la imagen */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.cancel {
+    flex: 1;
+    background: #E8E8E8;
+    border-radius: 15px; /* Más redondeado como la imagen */
+    padding: 12px;
+}
+
+.continue {
+    flex: 2; /* Más ancho */
+    background: #9E001F;
+    border-radius: 15px;
+    padding: 12px;
+}
+
+
 .footer.visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0); /* Sube a su posición original */
 }
-
-.info-summary h3 {
-    font-weight: 400;
-    font-size: 18px;
-    color: #5C403F;
-}
-
-.info-summary p {
-    font-weight: 700;
-    font-size: 24px;
-    color: #1A1C1C;
-}
-
 
 .action-buttons {
     display: flex;
@@ -394,7 +441,7 @@ main {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
     gap: 10px;
     font-weight: 700;
     background: #9E001F;

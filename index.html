@@ -1,66 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BarberBook</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-    <h2>Barbershop</h2>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BarberBook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h2>Barbershop</h2>
+    </header>
 
-  <main>
-    <section class="hero">
-      <h2>
-        Hola Jacobo, 
-        <span class="pregunta">¿Cuál será tu próximo estilo?</span>
-      </h2>
-      <p>Selecciona uno o más servicios para tu sesión</p>
-    </section>
+    <main>
+      <section class="hero">
+        <h2>
+          Hola Jacobo,
+          <span class="pregunta">¿Cuál será tu próximo estilo?</span>
+        </h2>
+        <p>Selecciona uno o más servicios para tu sesión</p>
+      </section>
 
-    <section class="shop-info">
-      <h3>
-        <i class="fa-solid fa-location-dot" style="color: rgb(143, 0, 24);"></i>
-        Barbería El Inge •
-        <span class="direction">Av. Insurgentes 123</span>
-      </h3>
-      <button class="btn-direction">
-        Ver en mapa
-      </button>
-    </section>
+      <section class="shop-info">
+        <h3>
+          <i
+            class="fa-solid fa-location-dot"
+            style="color: rgb(143, 0, 24)"></i>
+          Barbería El Inge •
+          <span class="direction">Av. Insurgentes 123</span>
+        </h3>
+        <button class="btn-direction">Ver en mapa</button>
+      </section>
 
-    <section class="services">
-      <div class="tabs">
-        <button class="tab-button" data-tab="corte">Corte</button>
-        <button class="tab-button" data-tab="barba">Barba</button>
-        <button class="tab-button" data-tab="facial">Facial</button>
-        <button class="tab-button" data-tab="combos">Combos</button>
+      <section class="services">
+        <div class="tabs">
+          <button class="tab-button" data-tab="corte">Corte</button>
+          <button class="tab-button" data-tab="barba">Barba</button>
+          <button class="tab-button" data-tab="facial">Facial</button>
+          <button class="tab-button" data-tab="combos">Combos</button>
+        </div>
+
+        <div id="services-container" class="services-grid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-summary">
+        <div class="info-price">
+            <h3>TOTAL ESTIMADO</h3>
+            <p id="price">$0</p>
+        </div>
+        <div class="info-services">
+            <h3>SERVICIOS</h3>
+            <p id="count"></p>
+        </div>
       </div>
 
-      <div id="services-container" class="services-grid"></div>
+      <div class="action-buttons">
+        <button class="cancel">Cancelar</button>
+        <button class="continue">
+          Continuar<i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </footer>
     
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="info-summary">
-      <h3>RESUMEN DE SELECCIÓN</h3>
-      <p>
-        <span id="cantidad">1 Servicio Seleccionado</span> • 
-        $<span id="total">35.00</span> Total
-      </p>
-    </div>
-    <div class="action-buttons">
-      <button class="cancel">Cancelar</button>
-      <button class="continue">Continuar <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-    </div>
-  </footer>
-  <script src="js/services.js"></script>
-</body>
+    <script src="js/services.js"></script>
+  </body>
 </html>
