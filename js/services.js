@@ -101,24 +101,24 @@ function calcularYActualizar() {
 function actualizarResumen(cantidad, precio) {
   const footer = document.querySelector(".footer");
   const container = document.getElementById("services-container"); // Usamos el contenedor
-  const elCantidad = document.getElementById('cantidad');
-  const elTotal = document.getElementById('total');
+  const cantidadSeleccionados = document.getElementById('count');
+  const total = document.getElementById('price');
   let textoCantidad = "";
 
   if (cantidad > 0) {
     footer.classList.add('visible');
-    container.style.paddingBottom = "50px";
+    container.style.paddingBottom = "100px";
     textoCantidad = (cantidad === 1) 
-      ? "1 Servicio Seleccionado" 
-      : `${cantidad} Servicios Seleccionados`;
+      ? "1 Seleccionado" 
+      : `${cantidad} Seleccionados`;
   } else {
     footer.classList.remove('visible');
     container.style.paddingBottom = "0px";
   }
 
-  if (elCantidad && elTotal) {
-    elCantidad.textContent = textoCantidad;
-    elTotal.textContent = precio.toFixed(2);
+  if (cantidadSeleccionados && total) {
+    cantidadSeleccionados.textContent = textoCantidad;
+    total.textContent = `$${precio.toFixed(2)}`;
   }
 }
 
