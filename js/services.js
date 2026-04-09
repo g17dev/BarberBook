@@ -18,6 +18,7 @@ const services = {
 // Selectores
 const tabs = document.querySelectorAll(".tab-button");
 const container = document.getElementById("services-container");
+const btnDirection = document.querySelector(".btn-direction");
 
 // --- FUNCIONES CORE ---
 
@@ -71,7 +72,6 @@ function handleCardSelection(card, service, category) {
     calcularYActualizar();
   });
 }
-
 
 function animateCards() {
   const cards = document.querySelectorAll(".service-card");
@@ -166,6 +166,12 @@ tabs.forEach(tab => {
     renderServices(tab.dataset.tab);
     animateCards();
   });
+});
+
+// Click boton direction v1
+btnDirection.addEventListener("click", () => {
+  const urlMapa = "https://maps.app.goo.gl/rF3Q2dDC9RRsjDY47";
+  window.open(urlMapa, '_blank');
 });
 
 // --- INICIALIZACIÓN ---
