@@ -114,7 +114,7 @@ main {
 .services .tabs {
     display: flex;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     border-bottom: 1.5px solid #E8E8E8;
     overflow-x: auto; /* Permite deslizar los botones con el dedo */
     white-space: nowrap; /* Evita que los botones bajen de línea */
@@ -144,10 +144,6 @@ main {
     background-color: #9E001F;
     transform: scale(1.10);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.tabcontent {
-  display: none;
 }
 
 .services-grid {
