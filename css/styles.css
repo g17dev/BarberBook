@@ -101,7 +101,7 @@ main {
 .shop-info .btn-direction {
     font-weight: 600;
     text-decoration: underline;
-    font-size: 10px;
+    font-size: 12px;
     color: #8F0018;
     border: none;
     background: none;
@@ -109,6 +109,49 @@ main {
     margin-left: 0;     
     text-align: left;
     padding: 0; 
+}
+
+/* --- Tablet (768px en adelante) --- */
+@media (min-width: 768px) {
+    .shop-info .btn-direction {
+        font-size: 13px; /* Un poco más legible en tablets */
+    }
+
+    .shop-info .direction {
+        font-size: 14px;
+        color: rgba(39, 23, 23, 0.40);
+    }
+}
+
+/* --- Laptop / Desktop pequeño (1024px en adelante) --- */
+@media (min-width: 1024px) {
+    .shop-info .btn-direction {
+        font-size: 14px;
+        /* Podrías quitar el subrayado y que solo aparezca en hover */
+        text-decoration: none; 
+    }
+    
+    .shop-info .btn-direction:hover {
+        text-decoration: underline;
+        color: #b3001e; /* Un tono un poco más claro al pasar el mouse */
+    }
+
+    .shop-info .direction {
+        font-size: 16px;
+        color: rgba(39, 23, 23, 0.40);
+    }
+}
+
+/* --- Monitores grandes (1440px en adelante) --- */
+@media (min-width: 1440px) {
+    .shop-info .btn-direction {
+        font-size: 16px; /* Tamaño estándar de lectura en monitores */
+    }
+
+    .shop-info .direction {
+        font-size: 16px;
+        color: rgba(39, 23, 23, 0.40);
+    }
 }
 
 .services .tabs {
