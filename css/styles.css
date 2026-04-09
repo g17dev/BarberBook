@@ -451,6 +451,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     font-weight: 700;
     background: #9E001F;
@@ -469,4 +470,8 @@ main {
 .action-buttons .continue:active {
     transform: scale(0.95);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-buttons .continue i {
+    font-size: 1rem;
 }
