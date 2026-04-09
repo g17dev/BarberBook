@@ -182,12 +182,12 @@ main {
     border-color: #9E001F; /* borde coincide con fondo */
 }
 
-.tab-button:not(.active):hover {
+/* .tab-button:not(.active):hover {
     color: #ffffff;
     background-color: #9E001F;
     transform: scale(1.10);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
+} */
 
 .services-grid {
   display: grid;
@@ -232,11 +232,11 @@ main {
     height: 100%;
 }
 
-.service-card-inner:hover {
+/* .service-card-inner:hover {
   transform: scale(1.03);
   border: 2px solid #9E001F;
   box-shadow: 0 4px 10px rgb(158, 0, 31)
-}
+} */
 
 /* Top */
 .service-top {
@@ -254,10 +254,10 @@ main {
     transition: all 0.2s ease;
 }
 
-.service-card:hover .service-icon {
+/* .service-card:hover .service-icon {
     color: #9E001F;
     background-color: #FFDAD8;
-}
+} */
 
 .service-card-inner.selected .service-icon {
   color: #9E001F;
@@ -475,10 +475,10 @@ main {
     transition: all 0.3s ease;
 }
 
-.action-buttons .cancel:hover {
+/* .action-buttons .cancel:hover {
     transform: scale(1.10);
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
+} */
 
 .action-buttons .cancel:active {
     transform: scale(0.95);
@@ -501,10 +501,10 @@ main {
     transition: all 0.3s ease;
 }
 
-.action-buttons .continue:hover {
+/* .action-buttons .continue:hover {
     transform: scale(1.10);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
+} */
 
 .action-buttons .continue:active {
     transform: scale(0.95);
@@ -560,4 +560,46 @@ main {
         flex: none; /* Quita el flex: 2 y flex: 1 del móvil */
         min-width: 180px; 
     }
+}
+
+/* =============================================
+   EFECTOS INTERACTIVOS (Solución Hover Pegajoso)
+   ============================================= */
+
+/* Solo se activan si el usuario tiene un mouse (Computadoras) */
+@media (hover: hover) and (pointer: fine) {
+    .tab-button:not(.active):hover {
+        color: #ffffff;
+        background-color: #9E001F;
+        transform: scale(1.10);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .service-card-inner:hover {
+        transform: scale(1.03);
+        border: 2px solid #9E001F;
+        box-shadow: 0 4px 10px rgba(158, 0, 31, 0.3);
+    }
+
+    .service-card:hover .service-icon {
+        color: #9E001F;
+        background-color: #FFDAD8;
+    }
+
+    .action-buttons .cancel:hover {
+        transform: scale(1.10);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+        .action-buttons .continue:hover {
+        transform: scale(1.10);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+}
+
+/* Feedback táctil para Móviles (Se activa al tocar y desaparece al soltar) */
+.tab-button:active, 
+.service-card-inner:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
 }
