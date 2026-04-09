@@ -514,3 +514,50 @@ main {
 .action-buttons .continue i {
     font-size: 1rem;
 }
+
+@media (min-width: 1024px) {
+    .footer {
+        /* Cambiamos a horizontal para aprovechar el ancho */
+        flex-direction: row; 
+        align-items: center;
+        justify-content: center; /* Centra el bloque de contenido en la pantalla */
+        padding: 1rem 5%; /* Más espacio a los lados */
+    }
+
+    /* Creamos un contenedor "virtual" interno para que la info y los botones no se peguen a los bordes */
+    .footer-summary, 
+    .action-buttons {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .info-services {
+        text-align: center;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-around; /* Separa info de botones */
+        gap: 40px;
+    }
+
+    .footer-summary {
+        margin-top: 0;
+        padding-top: 0;
+        flex: 1; /* Ocupa el espacio necesario a la izquierda */
+    }
+
+    .action-buttons {
+        margin-top: 0;
+        flex: 1; /* Ocupa el espacio necesario a la derecha */
+        justify-content: flex-end; /* Empuja los botones a la derecha */
+    }
+
+    /* Opcional: Ajustar el tamaño de los botones para que no sean gigantes */
+    .action-buttons .continue, 
+    .action-buttons .cancel {
+        flex: none; /* Quita el flex: 2 y flex: 1 del móvil */
+        min-width: 180px; 
+    }
+}
