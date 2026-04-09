@@ -15,10 +15,22 @@ const services = {
   ]
 };
 
+const dataBarber = {
+  directions: {
+    direction: "Lomas del Mar 81048 Guasave, Sin.",
+    latitude: "25.55590966321249",
+    longitude: "-108.48245792295555"
+  }
+}
+
 // Selectores
 const tabs = document.querySelectorAll(".tab-button");
 const container = document.getElementById("services-container");
+const directionSpan = document.querySelector(".direction");
 const btnDirection = document.querySelector(".btn-direction");
+
+// Direccion Dinamica
+directionSpan.textContent = dataBarber.directions.direction;
 
 // --- FUNCIONES CORE ---
 
@@ -170,8 +182,16 @@ tabs.forEach(tab => {
 
 // Click boton direction v1
 btnDirection.addEventListener("click", () => {
-  const urlMapa = "https://maps.app.goo.gl/rF3Q2dDC9RRsjDY47";
-  window.open(urlMapa, '_blank');
+  const { latitude, longitude } = dataBarber.directions;
+
+  // URL que solo muestra la ubicacion en el mapa - NO CONTROLA ZOOM AUTOMATICO DESDE EL LINK
+  // Se debe mejorar para una mejor UX/UI
+  const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+  
+  // URL para lanzar para con direcciones para su llegada
+  //const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+  
+  window.open(url, '_blank');
 });
 
 // --- INICIALIZACIÓN ---
