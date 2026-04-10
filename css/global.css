@@ -1,0 +1,11 @@
+/* Variables Globales */
+:root {
+    --color-bg: #f6f4f4;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

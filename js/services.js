@@ -28,6 +28,7 @@ const tabs = document.querySelectorAll(".tab-button");
 const container = document.getElementById("services-container");
 const directionSpan = document.querySelector(".direction");
 const btnDirection = document.querySelector(".btn-direction");
+const btnContinue = document.querySelector(".continue");
 
 // Direccion Dinamica
 directionSpan.textContent = dataBarber.directions.direction;
@@ -192,6 +193,10 @@ btnDirection.addEventListener("click", () => {
   //const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
   
   window.open(url, '_blank');
+});
+
+btnContinue.addEventListener("click", () => {
+  window.location.href = 'booking.html';
 });
 
 // --- INICIALIZACIÓN ---
