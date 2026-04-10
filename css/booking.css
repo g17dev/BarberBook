@@ -1,3 +1,10 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    font-weight: 800;
+    background: var(--color-bg);
+}
+
 header {
     position: fixed;  /* fijo a la ventana */
     top: 0;           /* distancia desde la parte superior */
@@ -16,3 +23,62 @@ main {
     gap: 1.5rem;
     padding: 6rem 1rem;
 }
+
+.hero {
+    text-align: start;
+    gap: 1rem;
+}
+
+.hero h2 {
+    color: #1A1C1C;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.hero p {
+    color: #5C403F;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.calendar-type {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.calendar-type h3 {
+    color: #1A1C1C;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.style-calendar {
+    background-color: #efe9e9; /* Mejorar color */
+    padding: 5px;
+    border-radius: 12px;
+}
+
+/* Estado base para ambos botones */
+.style-calendar .monthly, 
+.style-calendar .weekly {
+    border-radius: 8px;
+    background-color: #efe9e9;
+    padding: 7px 10px;
+    color: rgba(92, 64, 63, 0.6);
+    border: none;
+    font-weight: 800;
+    font-size: 0.7rem;
+    cursor: pointer; /* Añade esto para que parezca botón */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estado activo de los botones */
+.style-calendar .monthly.active,
+.style-calendar .weekly.active {
+    background-color: #ffffff;
+    color: #9E001F;
+}
+
+
