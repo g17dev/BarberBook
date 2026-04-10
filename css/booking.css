@@ -81,4 +81,26 @@ main {
     color: #9E001F;
 }
 
+/* --- Laptop / Desktop pequeño (1024px en adelante) --- */
+@media (min-width: 1024px) {
+    .style-calendar .monthly:hover {
+        color: #9E001F;
+    } 
+    
+    .style-calendar .weekly:hover {
+        color: #9E001F;
+    }
+}
+
+/* --- Monitores grandes (1440px en adelante) --- */
+@media (min-width: 1440px) {
+    .style-calendar .monthly:hover {
+        color: #9E001F;
+    } 
+    
+    .style-calendar .weekly:hover {
+        color: #9E001F;
+    }
+}
+
 
