@@ -1,0 +1,314 @@
+/* 1. Reset Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+/* VISTA MENSUAL */
+.booking-calendar[data-view="monthly"]  {
+    width: 100%;
+    max-width: 900px;
+    max-height: 500px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* VISTA SEMANAL */
+.booking-calendar[data-view="weekly"] {
+    width: 100%;
+    max-width: 900px;
+    max-height: 500px;
+    background: transparent;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #1A1C1C;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0 1rem;
+}
+
+.calendar-header #btnPrevious,
+.calendar-header #btnNext {
+    all: unset; 
+    border: none;
+    background: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+}
+
+.calendar-header #btnPrevious:hover,
+.calendar-header #btnNext:hover {
+    transform: scale(1.20);
+}
+
+.calendar-header #btnPrevious:active,
+.calendar-header #btnNext:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+.calendar-body .day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: 700;
+    color: rgba(92, 64, 63, 0.6);
+}
+
+/* VISTA SEMANAL */
+.booking-calendar[data-view="weekly"] .day-names {
+    display: none;
+}
+
+.days-grid {
+    display: grid;
+}
+
+/* VISTA MENSUAL*/
+.booking-calendar[data-view="monthly"] .days-grid {
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 8px;
+}
+
+/* VISTA SEMANAL */
+.booking-calendar[data-view="weekly"] .days-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 20px 5px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* CAMBIO: Se agrega snap-type para que el scroll se pegue a los bordes en móviles */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.booking-calendar[data-view="weekly"] .days-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* ESTADOS DE DÍAS */
+.day-month-before, .day-month-after, .day-deactive {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 800;
+    background-color: transparent;
+    color: #A1A1AA;
+}
+
+/* CAMBIO: Nuevo estado para días bloqueados por configuración */
+.day-disabled {
+    cursor: not-allowed !important;
+    opacity: 0.4 !important;
+    pointer-events: none; /* Bloquea el clic de JS */
+}
+
+.day {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    background-color: transparent;
+    color: #1A1C1C;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    gap: 10px; 
+    line-height: 1;
+}
+
+.day span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.day:hover {
+    background-color: #FFDAD8;
+    color: #C8102E;
+}
+
+.day:active {
+    transform: scale(0.9);
+    background-color: #e0e0e0;
+}
+
+.day.selected {
+    background-color: #9E001F;
+    color: white;
+    box-shadow: 0 8px 30px rgba(158, 0, 31, 0.2); 
+}
+
+/* ESTILOS ESPECÍFICOS VISTA SEMANAL */
+.booking-calendar[data-view="weekly"] .day-deactive {
+    flex: 0 0 108px; /* CAMBIO: de flex:1 a 0 0 para mantener tamaño en scroll */
+    height: 140px;
+    border-radius: 20px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    opacity: 0.6;
+}
+
+.booking-calendar[data-view="weekly"] .day {
+    flex: 0 0 108px;
+    height: 140px;
+    min-width: 108px;
+    border-radius: 20px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    transition: transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    scroll-snap-align: start; 
+}
+
+.booking-calendar[data-view="weekly"] .day .day-name,
+.booking-calendar[data-view="weekly"] .day-deactive .day-name {
+    font-size: 1rem;
+    color: #5C403F;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.booking-calendar[data-view="weekly"] .day .day-number,
+.booking-calendar[data-view="weekly"] .day-deactive .day-number {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    color: #1A1C1C;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.booking-calendar[data-view="weekly"] .day:hover {
+    color: #C8102E;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.booking-calendar[data-view="weekly"] .day.selected {
+    transform: scale(1.08);
+    background-color: #9E001F;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(158, 0, 31, 0.08);
+    cursor: default;
+}
+
+.booking-calendar[data-view="weekly"] .day.selected .day-name,
+.booking-calendar[data-view="weekly"] .day.selected .day-number {
+    color: #ffffff;
+}
+
+/* CAMBIO: MEDIA QUERIES PARA RESPONSIVIDAD DE VISTA MENSUAL */
+
+@media (max-width: 768px) {
+    /* Permitimos que el calendario crezca para no cortar los días */
+    .booking-calendar[data-view="monthly"] {
+        max-height: none; 
+        padding: 15px;
+    }
+
+    /* Reducimos la altura de los días para que quepan más filas en pantalla */
+    .day, .day-deactive, .day-month-before, .day-month-after {
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-header {
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Reducimos el espacio entre días para ganar espacio horizontal */
+    .booking-calendar[data-view="monthly"] .days-grid {
+        gap: 4px;
+    }
+
+    /* Tamaño mínimo funcional para 7 columnas en móviles pequeños */
+    .day, .day-deactive, .day-month-before, .day-month-after {
+        height: 50px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+
+    /* Ajustamos el tamaño del span "HOY" en mensual móvil */
+    .day span {
+        font-size: 0.55rem;
+        gap: 2px;
+    }
+
+    .day-names {
+        font-size: 0.75rem;
+    }
+}
+
+/* CAMBIO: MEDIA QUERIES PARA RESPONSIVIDAD SEMANAL */
+@media (max-width: 768px) {
+    .booking-calendar[data-view="weekly"] .day,
+    .booking-calendar[data-view="weekly"] .day-deactive {
+        flex: 0 0 90px; /* Tarjetas un poco más angostas en tablets */
+        min-width: 90px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-calendar[data-view="weekly"] .day,
+    .booking-calendar[data-view="weekly"] .day-deactive {
+        flex: 0 0 60px; /* Tamaño optimizado para smartphones */
+        min-width: 60px;
+        height: 90px;
+        padding: 12px 8px;
+        border-radius: 10px;
+    }
+    
+    .booking-calendar[data-view="weekly"] .day .day-number {
+        font-size: 1.5rem; /* Reducción de fuente para pantallas pequeñas */
+    }
+    
+    .calendar-header {
+        font-size: 0.9rem;
+    }
+}
