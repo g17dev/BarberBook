@@ -1,20 +1,32 @@
 // Selectores
 const btnMonthly = document.querySelector(".monthly");
 const btnWeekly = document.querySelector(".weekly");
+const calendarComponent = document.querySelector('booking-calendar');
 
 // FUNCIONES
 
-function toogleActiveCalendarType(btnActive, btnDeactive) {
-    btnActive.classList.add('active');
-    btnDeactive.classList.remove('active');
+function updateCalendarView(view) {
+    // Cambiamos la vista en el componente (usando el setter)
+    if (calendarComponent) {
+        calendarComponent.view = view;
+    }
+
+    // Actualizamos clases visuales de los botones
+    if (view === 'monthly') {
+        btnMonthly.classList.add('active');
+        btnWeekly.classList.remove('active');
+    } else {
+        btnWeekly.classList.add('active');
+        btnMonthly.classList.remove('active');
+    }
 }
 
 // Eventos
 
 btnMonthly.addEventListener('click', () => {
-    toogleActiveCalendarType(btnMonthly, btnWeekly);
+    updateCalendarView('monthly'); 
 });
 
 btnWeekly.addEventListener('click', () => {
-    toogleActiveCalendarType(btnWeekly, btnMonthly);
+    updateCalendarView('weekly');
 });
