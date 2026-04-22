@@ -1,0 +1,107 @@
+.time-selection-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.time-selection-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.period-header {
+    display: flex;         /* Activa alineación horizontal */
+    align-items: center;   /* Centra verticalmente icono y texto */
+    gap: 12px;             /* Espacio entre el icono y el h3 */
+}
+
+.period-svg {
+    width: 24px;           /* Ajusta el tamaño de tus SVG */
+    height: 24px;
+    flex-shrink: 0;        /* Evita que el icono se aplaste */
+}
+
+.time-selection-title {
+    margin: 0;             /* Quitamos márgenes por defecto para que el flex controle el espacio */
+    font-size: 1rem;
+    font-weight: 700;
+    color: #5C403F;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+.time-selection-div h3 {
+    font-size: 1rem;
+    color: #1A1C1C;
+    font-weight: 700;
+}
+
+.time-slots-grid {
+    display: grid;
+    /* 1. Ancho mínimo de 100px (el 1fr hace que se estiren si sobra espacio) */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    
+    /* 2. Alto mínimo de 58px para todas las filas creadas */
+    grid-auto-rows: minmax(58px, auto);
+    
+    gap: 10px;
+}
+
+.time-slot {
+    width: 100%;  /* Ocupa todo el ancho de la celda del grid */
+    height: 100%; /* Ocupa todo el alto de la celda del grid */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #F4F3F3;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+/* Usamos :not para que el efecto NO se aplique a los ya ocupados ni a los ya seleccionados */
+.time-slot:not(.is-occupied):not(.selected):hover {
+    color: #C8102E;           /* El rojo vibrante */
+    transform: scale(1.05);    /* Aumenta el tamaño igual que el seleccionado */
+    box-shadow: 0 4px 10px rgba(200, 16, 46, 0.1); /* Sombra suave rojiza */
+    z-index: 1;                /* Asegura que la sombra se vea sobre otros slots */
+}
+
+/* Efecto Click (Al presionar) */
+.time-slot:not(.is-occupied):active {
+    transform: scale(0.95);    /* Se encoge un poco al presionar (efecto clic) */
+    transition: transform 0.1s; /* Transición rápida para que se sienta reactivo */
+}
+
+/* Aseguramos que el seleccionado mantenga su escala */
+.time-slot.selected {
+    background-color: #9E001F;
+    color: white;
+    transform: scale(1.05); 
+    box-shadow: 0 4px 12px rgba(158, 0, 31, 0.2);
+    cursor: default; /* Ya está seleccionado, no necesita cursor de puntero */
+}
+
+/* Estado ocupado (tachado) */
+.time-slot.is-occupied {
+    text-decoration: line-through; /* La línea en el medio */
+    color: #A1A1AA;               /* Color grisáceo */
+    background-color: #F4F3F3;    /* Fondo más claro/apagado */
+    cursor: not-allowed;          /* Cambia el cursor a "prohibido" */
+    opacity: 0.6;                 /* Lo hace ver desvanecido */
+    border: 1px dashed #E2E8F0;   /* Opcional: borde punteado para diferenciar */
+}
+
+/* Evita que el tachado cambie de color al pasar el mouse */
+.time-slot.is-occupied:hover {
+    background-color: #F4F3F3;
+    transform: none;
+}

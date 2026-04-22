@@ -50,7 +50,7 @@ main {
 
 .calendar-type h3 {
     color: #1A1C1C;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
 }
 
@@ -103,4 +103,14 @@ main {
     }
 }
 
+.available-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.available-schedule h3 {
+    color: #1A1C1C;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
