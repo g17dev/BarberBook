@@ -87,17 +87,30 @@ function initTimeSelection() {
     rootContainer.onclick = (e) => {
         const slot = e.target.closest(".time-slot");
         
-        // Si no es un slot o está ocupado, ignorar
+        // 1. Si no es un slot o está ocupado, ignorar
         if (!slot || slot.classList.contains('is-occupied')) return;
 
-        // Quitar selección previa dentro de ESTE contenedor
+        // 2. Verificar si el slot clickeado ya era el seleccionado
+        const isAlreadySelected = slot.classList.contains("selected");
+
+        // 3. Limpiar selección previa en cualquier caso
         const prev = rootContainer.querySelector(".time-slot.selected");
         if (prev) prev.classList.remove("selected");
         
-        // Seleccionar nuevo
-        slot.classList.add("selected");
-        console.log("Seleccionado:", slot.textContent);
-    };
+        // 4. Si NO estaba seleccionado antes, lo seleccionamos
+        // Si YA estaba seleccionado, se queda deseleccionado (gracias al paso 3)
+        if (!isAlreadySelected) {
+            slot.classList.add("selected");
+            console.log("Seleccionado:", slot.textContent);
+            // Aquí podrías mostrar el Summary Card:
+            // document.getElementById('summaryCard').classList.remove('hidden');
+        } else {
+            console.log("Deseleccionado");
+            // Aquí podrías ocultar el Summary Card:
+            // document.getElementById('summaryCard').classList.add('hidden');
+    }
+};
+
 }
 
 // --- FUNCIONES DE APOYO (HELPERS) ---
@@ -156,19 +169,4 @@ btnMonthly.addEventListener('click', () => {
 
 btnWeekly.addEventListener('click', () => {
     updateCalendarView('weekly');
-});
-
-// Cambia ".time-selection" por ".time-selection-container"
-document.querySelector(".time-selection-container").addEventListener("click", (e) => {
-    const slot = e.target.closest(".time-slot");
-    
-    // IMPORTANTE: No permitir seleccionar si está ocupado
-    if (!slot || slot.classList.contains('is-occupied')) return;
-
-    // Quitar selección previa
-    const prevSelected = document.querySelector(".time-slot.selected");
-    if (prevSelected) prevSelected.classList.remove("selected");
-    
-    // Seleccionar el nuevo
-    slot.classList.add("selected");
 });
