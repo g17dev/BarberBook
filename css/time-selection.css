@@ -67,18 +67,27 @@
     transition: all 0.2s ease;
 }
 
-/* .time-slot:hover {
-    background-color: #FFDAD8;
-    color: #C8102E;
-    border-color: #C8102E;
-} */
+/* Usamos :not para que el efecto NO se aplique a los ya ocupados ni a los ya seleccionados */
+.time-slot:not(.is-occupied):not(.selected):hover {
+    color: #C8102E;           /* El rojo vibrante */
+    transform: scale(1.05);    /* Aumenta el tamaño igual que el seleccionado */
+    box-shadow: 0 4px 10px rgba(200, 16, 46, 0.1); /* Sombra suave rojiza */
+    z-index: 1;                /* Asegura que la sombra se vea sobre otros slots */
+}
 
-/* Mejorando el estado seleccionado */
+/* Efecto Click (Al presionar) */
+.time-slot:not(.is-occupied):active {
+    transform: scale(0.95);    /* Se encoge un poco al presionar (efecto clic) */
+    transition: transform 0.1s; /* Transición rápida para que se sienta reactivo */
+}
+
+/* Aseguramos que el seleccionado mantenga su escala */
 .time-slot.selected {
     background-color: #9E001F;
     color: white;
-    transform: scale(1.05); /* Un pequeño salto para indicar selección */
-    box-shadow: 0 4px 12px rgba(158, 0, 31, 0.2); /* Sombra suave roja */
+    transform: scale(1.05); 
+    box-shadow: 0 4px 12px rgba(158, 0, 31, 0.2);
+    cursor: default; /* Ya está seleccionado, no necesita cursor de puntero */
 }
 
 /* Estado ocupado (tachado) */
