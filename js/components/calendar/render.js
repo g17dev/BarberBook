@@ -90,9 +90,22 @@
             const nuevoDia = document.createElement('div');
             nuevoDia.textContent = day;
 
-            // --- NUEVO: Formatear la fecha como YYYY-MM-DD ---
+            // Formato técnico para lógica (YYYY-MM-DD)
             const isoDate = fechaGenerada.toISOString().split('T')[0];
-            nuevoDia.dataset.date = isoDate; // <--- ESTO ES LO QUE FALTA
+            nuevoDia.dataset.date = isoDate;
+
+            // Construcción manual del formato amigable: "MES DIA, AÑO"
+            const dia = fechaGenerada.getDate();
+            const mes = fechaGenerada.toLocaleDateString('es-ES', { month: 'short' })
+                            .toUpperCase()
+                            .replace('.', ''); // Quita el punto de "abr."
+            const anio = fechaGenerada.getFullYear();
+
+            const fechaAmigable = `${mes} ${dia}, ${anio}`;
+
+            // Guardar en el dataset para que BookingCalendar lo pueda leer
+            nuevoDia.dataset.friendlyDate = fechaAmigable;
+
 
             // Atributos para el Observer
             nuevoDia.dataset.monthName = nameMonthsMap.get(monthCurrent);

@@ -175,8 +175,7 @@ main {
     justify-content: space-between; /* Badges a la izquierda, Total a la derecha */
     align-items: flex-start;
     width: 100%;
-    gap: 10px; 
-    padding-bottom: 5px;
+
 }
 
 .badges-group {
@@ -184,15 +183,16 @@ main {
     flex-direction: row;
     flex-wrap: nowrap; /* Prohibido saltar */
     gap: 6px;          /* Espacio pequeño entre los 3 badges */
+    flex-grow: 1;
 }
 
 .badge {
-    height: 23px;
-    padding: 0 10px;
+    height: 22px;
+    padding: 0 4px;
     background-color: #f2f2f2;
     color: #1a1a1c;
     border-radius: 6px;
-    font-size: 10px; /* Un poco más pequeño para asegurar que quepan los 3 */
+    font-size: 11px; /* Un poco más pequeño para asegurar que quepan los 3 */
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -201,10 +201,21 @@ main {
     flex: 0 0 auto; /* No se estiran ni se encogen */
 }
 
+.badge-icon {
+    width: 16px;  /* Ajusta el tamaño según tu diseño */
+    height: 16px;
+    margin-right: 5px;
+    display: block; 
+    object-fit: contain;
+}
+
 .total-group {
+    display: flex;       /* IMPORTANTE: Para que funcione flex-direction */
     flex-direction: column;
     text-align: right;
-    flex-shrink: 0; /* El total es intocable */
+    flex-shrink: 0;      /* Evita que los badges lo compriman */
+    min-width: 0px;    /* CAMBIO CLAVE: Reserva espacio suficiente */
+    justify-content: flex-end; /* Alinea el contenido al final (derecha) */
 }
 
 .total-label {
@@ -224,6 +235,10 @@ main {
 
 /* Botones */
 .btn-confirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: #9E001F;
   color: white;
@@ -234,6 +249,11 @@ main {
   font-weight: 700;
   margin-bottom: 12px;
   cursor: pointer;
+  gap: 10px;
+}
+
+.btn-confirm i {
+    font-size: 1rem;
 }
 
 .btn-back {

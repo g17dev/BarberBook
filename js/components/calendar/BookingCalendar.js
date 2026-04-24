@@ -13,7 +13,7 @@ class BookingCalendar extends HTMLElement {
             const initial = this.shadowRoot.querySelector('.day.selected');
             if (initial && initial.dataset.date) {
                 this.dispatchEvent(new CustomEvent('date-change', {
-                    detail: { date: initial.dataset.date, element: initial },
+                    detail: { date: initial.dataset.date, friendlyDate: initial.dataset.friendlyDate, element: initial },
                     bubbles: true,
                     composed: true
                 }));
@@ -51,7 +51,7 @@ class BookingCalendar extends HTMLElement {
                     const dateValue = target.dataset.date;
                     if (dateValue) {
                         this.dispatchEvent(new CustomEvent('date-change', {
-                            detail: { date: dateValue, element: target },
+                            detail: { date: dateValue, friendlyDate: friendlyValue, element: target },
                             bubbles: true,
                             composed: true
                         }));

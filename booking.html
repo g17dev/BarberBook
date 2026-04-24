@@ -9,6 +9,12 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
       rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/booking.css" />
     <link rel="stylesheet" href="css/time-selection.css" />
@@ -54,9 +60,20 @@
             <div class="booking-details">
                 <div class="booking-summary-row">
                     <div class="badges-group">
-                       <span class="badge" id="summary-date">SELECCIONAR FECHA</span>
-                        <span class="badge" id="summary-time">--:--</span>
-                        <span class="badge" id="summary-duration">0 MIN</span>
+                       <span class="badge">
+                            <img src="./assets/icons/calendar.svg" class="badge-icon" alt="Calendar">
+                            <span id="summary-date">SELECCIONAR FECHA</span>
+                        </span>
+
+                        <span class="badge">
+                            <img src="./assets/icons/clock.svg" class="badge-icon" alt="Clock">
+                            <span id="summary-time">--:--</span>
+                        </span>
+
+                        <span class="badge">
+                            <img src="./assets/icons/timer.svg" class="badge-icon" alt="Timer">
+                            <span id="summary-duration">0 MIN</span>
+                        </span>
                     </div>
 
                     <div class="total-group">
@@ -66,7 +83,9 @@
                 </div>
             </div>
 
-            <button class="btn-confirm">Confirmar Cita →</button>
+            <button class="btn-confirm">
+                Confirmar Cita<i class="fa-solid fa-arrow-right"></i>
+            </button>
             <button class="btn-back" id="closeSummary">Regresar</button>
         </aside>
 

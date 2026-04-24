@@ -39,6 +39,7 @@ const iconosPeriodo = {
 
 // Variable global dentro del DOMContentLoaded para guardar la selección
 let selectedDate = "Seleccionar fecha";
+let selectedDateDB = "";
 let selectedTime = "--:--";
 let fechaSeleccionada = null; // Aquí guardaremos el valor
 
@@ -56,9 +57,11 @@ function updateCalendarView(view) {
 /**
  * Actualiza los datos visuales del Summary Card
  */
-function updateSummaryUI(hora) {
+function updateSummaryUI() {
+    const dateBadge = document.getElementById('summary-date');
     const timeBadge = document.getElementById('summary-time');
-    if (timeBadge) timeBadge.textContent = hora;
+    if (dateBadge) dateBadge.textContent = selectedDate
+    if (timeBadge) timeBadge.textContent = selectedTime;
     
     if (summaryCard) summaryCard.classList.add("visible");
 }
@@ -119,7 +122,11 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // Evento para obtener el dia seleccionado de la vista del calendario
     calendarComponent.addEventListener('date-change', (e) => {
         // Obtener el valor de 'dateValue' del componente
-        fechaSeleccionada = e.detail.date; 
+        const fechaSeleccionada = e.detail.friendlyDate;
+        const fechaSeleccionadaDB = e.detail.date;
+
+        selectedDate = fechaSeleccionada;
+        selectedDateDB = fechaSeleccionadaDB;
         
         console.log("Variable actualizada en el proyecto:", fechaSeleccionada);
     });
@@ -131,7 +138,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         selectedTime = "--:--"; 
 
         // 1. Obtener los nuevos horarios para esa fecha
-        const nuevosHorarios = await cargarHorariosPorFecha(fechaSeleccionada);
+        const nuevosHorarios = await cargarHorariosPorFecha(selectedDateDB);
 
         // 2. Actualizar el componente de tiempo
         // (Asumiendo que tu clase TimeSelection tiene un método para actualizar datos)
