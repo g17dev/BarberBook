@@ -63,13 +63,32 @@ function updateSummaryUI(hora) {
     if (summaryCard) summaryCard.classList.add("visible");
 }
 
+async function cargarHorariosPorFecha(fecha) {
+    try {
+
+        const response = await fetch(`http://localhost:3000/disponibilidad/${fecha}`);
+
+        if (!response.ok) {
+            console.warn(`⚠️ La fecha ${fecha} no tiene configuración.`);
+            return []; // Retornamos array vacío para disparar renderNoAvailability
+        }
+        
+        const data = await response.json();
+        console.log("Obteniendo horarios de "+fecha);
+        return data.horarios || [];
+    } catch (error) {
+        console.error("❌ Error de conexión:", error);
+        return []; 
+    }
+}
+
 // --- INICIALIZACIÓN ---
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async (e) => {
     
-    // Instanciar el componente de selección de tiempo
-    new TimeSelection(".time-selection-container", {
-        horarios: horariosBarbero,
+    // Guardamos la instancia del TimeSelection para poder actualizarla luego
+    const timePicker = new TimeSelection(".time-selection-container", {
+        horarios: horariosBarbero, // Carga inicial
         periodos: horarioDia,
         iconos: iconosPeriodo,
         onSelect: (hora) => updateSummaryUI(hora),
@@ -94,4 +113,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         console.log("Variable actualizada en el proyecto:", fechaSeleccionada);
     });
+
+    // ESCUCHAR CAMBIOS DE FECHA
+    calendarComponent.addEventListener('date-change', async (e) => {
+        const fecha = e.detail.date;
+        //fechaSeleccionada = fecha; 
+
+        // 1. Obtener los nuevos horarios para esa fecha
+        const nuevosHorarios = await cargarHorariosPorFecha(fechaSeleccionada);
+
+        // 2. Actualizar el componente de tiempo
+        // (Asumiendo que tu clase TimeSelection tiene un método para actualizar datos)
+        if (timePicker.updateData) {
+            timePicker.updateData(nuevosHorarios);
+        } else {
+            // Si no tienes método de actualización, podrías re-instanciarlo 
+            // o limpiar el contenedor y volver a crearlo.
+            console.log("Horarios listos para renderizar del dia "+fecha+":", nuevosHorarios);
+        }
+    });
+
 });

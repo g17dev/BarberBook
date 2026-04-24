@@ -106,3 +106,44 @@
     background-color: #F4F3F3;
     transform: none;
 }
+
+/* Imagen de error */
+/* El contenedor padre debe tener una altura mínima para que el centrado se note */
+.time-selection-container {
+    min-height: 300px; /* Ajusta según el diseño de tu app */
+    display: flex;
+    flex-direction: column;
+}
+
+.no-availability-container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    flex-grow: 1;            /* Ocupa todo el espacio sobrante */
+    padding: 20px;
+    text-align: center;
+}
+
+.no-availability-content {
+    max-width: 300px; /* Para que el texto no se estire demasiado */
+}
+
+.empty-img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.no-availability-content h3 {
+    font-size: 1.1rem;
+    color: #1A1C1C;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.no-availability-content p {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #878484;
+    line-height: 1.5;
+}
