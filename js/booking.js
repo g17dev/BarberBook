@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         summaryCard.classList.remove("visible");
         // Deseleccionar visualmente el slot
         document.querySelector('.time-slot.selected')?.classList.remove('selected');
+        window.history.back();
     });
 
     // Evento para obtener el dia seleccionado de la vista del calendario
