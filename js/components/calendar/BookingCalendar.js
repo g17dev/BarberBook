@@ -17,7 +17,6 @@ class BookingCalendar extends HTMLElement {
                     bubbles: true,
                     composed: true
                 }));
-                console.log("Evento disparado:", initial.dataset.date);
             }
         }, 50);
     }

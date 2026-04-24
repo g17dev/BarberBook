@@ -20,7 +20,6 @@ export class TimeSelection {
 
     render() {
         this.container.innerHTML = '';
-        console.log("Cargando horario");
 
         if (!this.horarios || this.horarios.length === 0) {
             this.renderNoAvailability();
@@ -77,7 +76,7 @@ export class TimeSelection {
     }
 
     updateData(nuevosHorarios) {
-        console.log("🔄 Actualizando horarios visualmente...");
+
         this.horarios = nuevosHorarios;
         
         // 1. Limpiamos la selección anterior antes de re-renderizar
@@ -103,26 +102,39 @@ export class TimeSelection {
 
 
     bindEvents() {
-        // Usamos delegación de eventos en el contenedor padre
-        this.container.onclick = (e) => {
-            const slot = e.target.closest(".time-slot");
-            
-            // Si no es un slot o está ocupado, no hacemos nada
-            if (!slot || slot.classList.contains('is-occupied')) return;
+    this.container.onclick = (e) => {
+        const slot = e.target.closest(".time-slot");
+        if (!slot || slot.classList.contains('is-occupied')) return;
 
-            const isAlreadySelected = slot.classList.contains("selected");
+        const isAlreadySelected = slot.classList.contains("selected");
 
-            // Quitar selección a cualquier otro slot en todo el contenedor
-            const prev = this.container.querySelector(".time-slot.selected");
-            if (prev) prev.classList.remove("selected");
-            
+        // Quitar selección previa
+        const prev = this.container.querySelector(".time-slot.selected");
+        if (prev) prev.classList.remove("selected");
+        
             if (!isAlreadySelected) {
                 slot.classList.add("selected");
-                if (this.onSelect) this.onSelect(slot.textContent);
+                const hora = slot.textContent;
+
+                // --- NUEVO: Disparar evento personalizado ---
+                this.container.dispatchEvent(new CustomEvent('time-change', {
+                    detail: { 
+                        time: hora,
+                        element: slot 
+                    },
+                    bubbles: true
+                }));
+
+                if (this.onSelect) this.onSelect(hora);
             } else {
-                // Si el usuario toca el que ya estaba seleccionado, lo deseleccionamos
+                // Caso: Deselección
+                this.container.dispatchEvent(new CustomEvent('time-change', {
+                    detail: { time: null },
+                    bubbles: true
+                }));
                 if (this.onDeselect) this.onDeselect();
             }
         };
     }
+
 }

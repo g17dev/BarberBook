@@ -30,7 +30,6 @@
             let dateToProcess = weeklyAnchorDate;
 
             if (isFirstWeeklyRender) {
-                console.log("Renderizando por primera vez vista semanal");
                 if (window.headerObserver) window.headerObserver.disconnect(); 
                 
                 // 1. Actualizamos la referencia local para este ciclo

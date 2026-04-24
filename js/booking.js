@@ -74,7 +74,6 @@ async function cargarHorariosPorFecha(fecha) {
         }
         
         const data = await response.json();
-        console.log("Obteniendo horarios de "+fecha);
         return data.horarios || [];
     } catch (error) {
         console.error("❌ Error de conexión:", error);
@@ -88,11 +87,22 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     
     // Guardamos la instancia del TimeSelection para poder actualizarla luego
     const timePicker = new TimeSelection(".time-selection-container", {
-        horarios: horariosBarbero, // Carga inicial
+        horarios: horariosBarbero,
         periodos: horarioDia,
         iconos: iconosPeriodo,
-        onSelect: (hora) => updateSummaryUI(hora),
-        onDeselect: () => summaryCard.classList.remove("visible")
+        onSelect: (hora) => {
+            // --- AQUÍ ACTUALIZAS TU VARIABLE ---
+            selectedTime = hora; 
+            console.log("⌚ Hora seleccionada en el proyecto:", selectedTime);
+            
+            // Llamas a tu función visual
+            updateSummaryUI(hora);
+        },
+        onDeselect: () => {
+            // --- AQUÍ LIMPIAS TU VARIABLE ---
+            selectedTime = "--:--";
+            summaryCard.classList.remove("visible");
+        }
     });
 
     // Eventos de botones de vista de calendario
@@ -117,7 +127,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     // ESCUCHAR CAMBIOS DE FECHA
     calendarComponent.addEventListener('date-change', async (e) => {
         const fecha = e.detail.date;
-        //fechaSeleccionada = fecha; 
+
+        selectedTime = "--:--"; 
 
         // 1. Obtener los nuevos horarios para esa fecha
         const nuevosHorarios = await cargarHorariosPorFecha(fechaSeleccionada);
@@ -129,7 +140,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         } else {
             // Si no tienes método de actualización, podrías re-instanciarlo 
             // o limpiar el contenedor y volver a crearlo.
-            console.log("Horarios listos para renderizar del dia "+fecha+":", nuevosHorarios);
         }
     });
 
