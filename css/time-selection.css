@@ -67,18 +67,20 @@
     transition: all 0.2s ease;
 }
 
-/* Usamos :not para que el efecto NO se aplique a los ya ocupados ni a los ya seleccionados */
-.time-slot:not(.is-occupied):not(.selected):hover {
-    color: #C8102E;           /* El rojo vibrante */
-    transform: scale(1.05);    /* Aumenta el tamaño igual que el seleccionado */
-    box-shadow: 0 4px 10px rgba(200, 16, 46, 0.1); /* Sombra suave rojiza */
-    z-index: 1;                /* Asegura que la sombra se vea sobre otros slots */
+/* Solo aplica hover en dispositivos que tienen puntero (PC) */
+@media (hover: hover) {
+    .time-slot:not(.is-occupied):not(.selected):hover {
+        color: #9E001F;
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(200, 16, 46, 0.1);
+        z-index: 1;
+    }
 }
 
 /* Efecto Click (Al presionar) */
 .time-slot:not(.is-occupied):active {
-    transform: scale(0.95);    /* Se encoge un poco al presionar (efecto clic) */
-    transition: transform 0.1s; /* Transición rápida para que se sienta reactivo */
+    transform: scale(0.95);
+    transition: transform 0.1s;
 }
 
 /* Aseguramos que el seleccionado mantenga su escala */
@@ -87,7 +89,6 @@
     color: white;
     transform: scale(1.05); 
     box-shadow: 0 4px 12px rgba(158, 0, 31, 0.2);
-    cursor: default; /* Ya está seleccionado, no necesita cursor de puntero */
 }
 
 /* Estado ocupado (tachado) */
@@ -104,4 +105,45 @@
 .time-slot.is-occupied:hover {
     background-color: #F4F3F3;
     transform: none;
+}
+
+/* Imagen de error */
+/* El contenedor padre debe tener una altura mínima para que el centrado se note */
+.time-selection-container {
+    min-height: 300px; /* Ajusta según el diseño de tu app */
+    display: flex;
+    flex-direction: column;
+}
+
+.no-availability-container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    flex-grow: 1;            /* Ocupa todo el espacio sobrante */
+    padding: 20px;
+    text-align: center;
+}
+
+.no-availability-content {
+    max-width: 300px; /* Para que el texto no se estire demasiado */
+}
+
+.empty-img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.no-availability-content h3 {
+    font-size: 1.1rem;
+    color: #1A1C1C;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.no-availability-content p {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #878484;
+    line-height: 1.5;
 }

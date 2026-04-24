@@ -1,6 +1,6 @@
 body {
     font-family: 'Manrope', sans-serif;
-    min-height: 100vh;
+    min-height: auto;
     font-weight: 800;
     background: var(--color-bg);
 }
@@ -113,4 +113,163 @@ main {
     color: #1A1C1C;
     font-size: 1.3rem;
     font-weight: 800;
+}
+
+/* =========================================
+   ESTILOS MÓVIL (Comportamiento Footer)
+   ========================================= */
+.summary-card {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+    
+    /* ESTADO OCULTO (Copiado de tu footer) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ESTADO VISIBLE */
+.summary-card.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Títulos en gris pequeño */
+.section-title {
+  color: #636262;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* Separador punteado */
+.divider {
+  border: none;
+  border-top: 1px dashed #e0e0e0;
+  margin: 10px 0;
+}
+
+.booking-details {
+  display: flex;
+  flex-direction: row;      /* Fuerza horizontal */
+  flex-wrap: nowrap;        /* Prohibe saltar de línea */
+  align-items: center;      /* Centra verticalmente badges y total */
+  width: 100%;
+  overflow: hidden;         /* Corta lo que sobresalga del padre */
+}
+
+.booking-summary-row {
+    display: flex;
+    justify-content: space-between; /* Badges a la izquierda, Total a la derecha */
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px; 
+    padding-bottom: 5px;
+}
+
+.badges-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Prohibido saltar */
+    gap: 6px;          /* Espacio pequeño entre los 3 badges */
+}
+
+.badge {
+    height: 23px;
+    padding: 0 10px;
+    background-color: #f2f2f2;
+    color: #1a1a1c;
+    border-radius: 6px;
+    font-size: 10px; /* Un poco más pequeño para asegurar que quepan los 3 */
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex: 0 0 auto; /* No se estiran ni se encogen */
+}
+
+.total-group {
+    flex-direction: column;
+    text-align: right;
+    flex-shrink: 0; /* El total es intocable */
+}
+
+.total-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8e8e93; /* Gris claro para el texto "TOTAL" */
+  letter-spacing: 0.5px;
+  margin-bottom: -4px; /* Acerca el label al precio */
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: 800;
+  color: #C8102E;
+}
+
+/* Botones */
+.btn-confirm {
+  width: 100%;
+  background-color: #9E001F;
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.btn-back {
+  width: 100%;
+  background-color: #e0e0e0;
+  color: #1A1C1C;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* =========================================
+   ESTILOS DESKTOP (Comportamiento Aside)
+   ========================================= */
+@media (min-width: 768px) {
+    .summary-card {
+        /* Reset de posición fija a pegajosa lateral */
+        position: sticky;
+        top: 20px;
+        width: 380px;
+        border-radius: 24px;
+        margin: 20px;
+        
+        /* SIEMPRE VISIBLE EN DESKTOP (Opcional, según prefieras) */
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+}
+
+/* Solo para que no se pegue el contenido al footer en móvil */
+/* MEJORAR ESTO PARA QUE CREZCA CONFORME AL TAMAÑO DEL summary-card */
+body:has(.summary-card.visible) {
+    padding-bottom: 170px; 
 }

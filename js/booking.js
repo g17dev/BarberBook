@@ -1,28 +1,26 @@
-// Selectores
+import { TimeSelection } from './components/time-selection.js';
+
+// --- SELECTORES ---
 const btnMonthly = document.querySelector(".monthly");
 const btnWeekly = document.querySelector(".weekly");
 const calendarComponent = document.querySelector('booking-calendar');
+const summaryCard = document.querySelector('.summary-card');
 
-// DATA
-// Listado completo especificado por el barbero
+
+// --- DATA ---
 const horariosBarbero = [
-    // --- MAÑANA ---
     { hora: "06:00 AM", disponible: true, periodo: "MAÑANA" },
     { hora: "07:00 AM", disponible: true, periodo: "MAÑANA" },
     { hora: "08:00 AM", disponible: true, periodo: "MAÑANA" },
     { hora: "09:00 AM", disponible: true, periodo: "MAÑANA" },
     { hora: "10:00 AM", disponible: true, periodo: "MAÑANA" },
     { hora: "11:00 AM", disponible: true, periodo: "MAÑANA" },
-
-    // --- TARDE ---
-    { hora: "12:00 PM", disponible: false, periodo: "TARDE" }, // Almuerzo
+    { hora: "12:00 PM", disponible: false, periodo: "TARDE" },
     { hora: "01:00 PM", disponible: true, periodo: "TARDE" },
     { hora: "02:00 PM", disponible: true, periodo: "TARDE" },
     { hora: "03:00 PM", disponible: true, periodo: "TARDE" },
     { hora: "04:00 PM", disponible: true, periodo: "TARDE" },
     { hora: "05:00 PM", disponible: true, periodo: "TARDE" },
-    
-    // --- NOCHE ---
     { hora: "06:00 PM", disponible: true, periodo: "NOCHE" },
     { hora: "07:00 PM", disponible: true, periodo: "NOCHE" },
     { hora: "08:00 PM", disponible: true, periodo: "NOCHE" },
@@ -31,10 +29,7 @@ const horariosBarbero = [
     { hora: "11:00 PM", disponible: true, periodo: "NOCHE" }
 ];
 
-
-const horarioDia = [
-    "MAÑANA", "TARDE", "NOCHE"
-];
+const horarioDia = ["MAÑANA", "TARDE", "NOCHE"];
 
 const iconosPeriodo = {
     "MAÑANA": "./assets/icons/sunshine.svg",
@@ -42,133 +37,100 @@ const iconosPeriodo = {
     "NOCHE": "./assets/icons/moon.svg"
 };
 
+// Variable global dentro del DOMContentLoaded para guardar la selección
+let selectedDate = "Seleccionar fecha";
+let selectedTime = "--:--";
+let fechaSeleccionada = null; // Aquí guardaremos el valor
 
-// FUNCIONES
+
+// --- FUNCIONES DE COORDINACIÓN ---
 
 function updateCalendarView(view) {
-    // Cambiamos la vista en el componente (usando el setter)
     if (calendarComponent) {
         calendarComponent.view = view;
     }
+    btnMonthly.classList.toggle('active', view === 'monthly');
+    btnWeekly.classList.toggle('active', view === 'weekly');
+}
 
-    // Actualizamos clases visuales de los botones
-    if (view === 'monthly') {
-        btnMonthly.classList.add('active');
-        btnWeekly.classList.remove('active');
-    } else {
-        btnWeekly.classList.add('active');
-        btnMonthly.classList.remove('active');
+/**
+ * Actualiza los datos visuales del Summary Card
+ */
+function updateSummaryUI(hora) {
+    const timeBadge = document.getElementById('summary-time');
+    if (timeBadge) timeBadge.textContent = hora;
+    
+    if (summaryCard) summaryCard.classList.add("visible");
+}
+
+async function cargarHorariosPorFecha(fecha) {
+    try {
+
+        const response = await fetch(`http://localhost:3000/disponibilidad/${fecha}`);
+
+        if (!response.ok) {
+            console.warn(`⚠️ La fecha ${fecha} no tiene configuración.`);
+            return []; // Retornamos array vacío para disparar renderNoAvailability
+        }
+        
+        const data = await response.json();
+        console.log("Obteniendo horarios de "+fecha);
+        return data.horarios || [];
+    } catch (error) {
+        console.error("❌ Error de conexión:", error);
+        return []; 
     }
 }
 
-function initTimeSelection() {
-    const rootContainer = document.querySelector(".time-selection-container");
-    if (!rootContainer) return;
+// --- INICIALIZACIÓN ---
 
-    rootContainer.innerHTML = ''; 
-
-    horarioDia.forEach(periodo => {
-        // 1. Filtrar las horas antes de crear el contenedor (Eficiencia)
-        const horasFiltradas = horariosBarbero.filter(item => item.periodo === periodo);
-        if (horasFiltradas.length === 0) return;
-
-        // 2. Crear los elementos principales
-        const timeWrapper = document.createElement('div');
-        timeWrapper.classList.add('time-selection-div');
-
-        const title = createPeriodTitle(periodo);
-        const slotsContainer = createSlotsContainer(horasFiltradas);
-
-        // 3. Ensamblar y añadir al DOM
-        timeWrapper.append(title, slotsContainer);
-        rootContainer.appendChild(timeWrapper);
+document.addEventListener('DOMContentLoaded', async (e) => {
+    
+    // Guardamos la instancia del TimeSelection para poder actualizarla luego
+    const timePicker = new TimeSelection(".time-selection-container", {
+        horarios: horariosBarbero, // Carga inicial
+        periodos: horarioDia,
+        iconos: iconosPeriodo,
+        onSelect: (hora) => updateSummaryUI(hora),
+        onDeselect: () => summaryCard.classList.remove("visible")
     });
 
-    rootContainer.onclick = (e) => {
-        const slot = e.target.closest(".time-slot");
+    // Eventos de botones de vista de calendario
+    btnMonthly?.addEventListener('click', () => updateCalendarView('monthly'));
+    btnWeekly?.addEventListener('click', () => updateCalendarView('weekly'));
+
+    // Evento para el botón regresar del componente summary
+    document.getElementById('closeSummary')?.addEventListener('click', () => {
+        summaryCard.classList.remove("visible");
+        // Deseleccionar visualmente el slot
+        document.querySelector('.time-slot.selected')?.classList.remove('selected');
+    });
+
+    // Evento para obtener el dia seleccionado de la vista del calendario
+    calendarComponent.addEventListener('date-change', (e) => {
+        // Obtener el valor de 'dateValue' del componente
+        fechaSeleccionada = e.detail.date; 
         
-        // Si no es un slot o está ocupado, ignorar
-        if (!slot || slot.classList.contains('is-occupied')) return;
+        console.log("Variable actualizada en el proyecto:", fechaSeleccionada);
+    });
 
-        // Quitar selección previa dentro de ESTE contenedor
-        const prev = rootContainer.querySelector(".time-slot.selected");
-        if (prev) prev.classList.remove("selected");
-        
-        // Seleccionar nuevo
-        slot.classList.add("selected");
-        console.log("Seleccionado:", slot.textContent);
-    };
-}
+    // ESCUCHAR CAMBIOS DE FECHA
+    calendarComponent.addEventListener('date-change', async (e) => {
+        const fecha = e.detail.date;
+        //fechaSeleccionada = fecha; 
 
-// --- FUNCIONES DE APOYO (HELPERS) ---
+        // 1. Obtener los nuevos horarios para esa fecha
+        const nuevosHorarios = await cargarHorariosPorFecha(fechaSeleccionada);
 
-function createPeriodTitle(periodo) {
-    // 1. Contenedor para el icono y el texto
-    const headerDiv = document.createElement('div');
-    headerDiv.classList.add('period-header');
-
-    // 2. Imagen del icono
-    const iconImg = document.createElement('img');
-    iconImg.src = iconosPeriodo[periodo];
-    iconImg.alt = `Icono de ${periodo}`;
-    iconImg.classList.add('period-svg');
-
-    // 3. Título del periodo
-    const title = document.createElement('h3');
-    title.classList.add('time-selection-title');
-    title.textContent = periodo;
-
-    // 4. Ensamblamos horizontalmente
-    headerDiv.append(iconImg, title);
-    
-    return headerDiv;
-}
-
-function createSlotsContainer(horas) {
-    const container = document.createElement('div');
-    container.classList.add('time-slots-grid');
-
-    horas.forEach(item => {
-        const slot = document.createElement('div');
-        slot.classList.add('time-slot');
-        slot.textContent = item.hora;
-
-        if (!item.disponible) {
-            slot.classList.add('is-occupied');
+        // 2. Actualizar el componente de tiempo
+        // (Asumiendo que tu clase TimeSelection tiene un método para actualizar datos)
+        if (timePicker.updateData) {
+            timePicker.updateData(nuevosHorarios);
+        } else {
+            // Si no tienes método de actualización, podrías re-instanciarlo 
+            // o limpiar el contenedor y volver a crearlo.
+            console.log("Horarios listos para renderizar del dia "+fecha+":", nuevosHorarios);
         }
-
-        container.appendChild(slot);
     });
 
-    return container;
-}
-
-
-// 1. Inicialización al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    initTimeSelection();
-});
-
-// 2. Eventos de los botones de vista (Tus eventos actuales)
-btnMonthly.addEventListener('click', () => {
-    updateCalendarView('monthly'); 
-});
-
-btnWeekly.addEventListener('click', () => {
-    updateCalendarView('weekly');
-});
-
-// Cambia ".time-selection" por ".time-selection-container"
-document.querySelector(".time-selection-container").addEventListener("click", (e) => {
-    const slot = e.target.closest(".time-slot");
-    
-    // IMPORTANTE: No permitir seleccionar si está ocupado
-    if (!slot || slot.classList.contains('is-occupied')) return;
-
-    // Quitar selección previa
-    const prevSelected = document.querySelector(".time-slot.selected");
-    if (prevSelected) prevSelected.classList.remove("selected");
-    
-    // Seleccionar el nuevo
-    slot.classList.add("selected");
 });

@@ -40,9 +40,40 @@
             <h3>Horario Disponible</h3>
             <div class="time-selection-container"/>
         </section>
+
+        <!-- Añadimos el ID para la lógica de mostrar/ocultar y cerramos los divs correctamente -->
+        <aside class="summary-card hidden" id="summaryCard">
+            <p class="section-title">SERVICIOS SELECCIONADOS</p>
+            
+            <div class="services-list" id="servicesList">
+                <!-- Aquí inyectarás los servicios con JS -->
+            </div>
+
+            <hr class="divider">
+
+            <div class="booking-details">
+                <div class="booking-summary-row">
+                    <div class="badges-group">
+                       <span class="badge" id="summary-date">SELECCIONAR FECHA</span>
+                        <span class="badge" id="summary-time">--:--</span>
+                        <span class="badge" id="summary-duration">0 MIN</span>
+                    </div>
+
+                    <div class="total-group">
+                        <span class="total-label">TOTAL</span>
+                        <span class="total-amount" id="summary-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-confirm">Confirmar Cita →</button>
+            <button class="btn-back" id="closeSummary">Regresar</button>
+        </aside>
+
+
         
     </main>
     <script type="module" src="./js/components/calendar/BookingCalendar.js"></script>
-    <script src="js/booking.js"></script>
+    <script type="module" src="js/booking.js"></script>
 </body>
 </html>

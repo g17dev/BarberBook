@@ -1,0 +1,119 @@
+{
+  "disponibilidad": [
+    {
+      "id": "2026-04-23",
+      "horarios": [
+        { "hora": "06:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "07:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "08:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "09:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "10:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "11:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "12:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "01:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "02:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "03:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "04:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "05:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "06:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "07:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "08:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "09:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "10:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "11:00 PM", "disponible": false, "periodo": "NOCHE" }
+      ]
+    },
+    {
+      "id": "2026-04-24",
+      "horarios": [
+        { "hora": "06:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "07:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "08:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "09:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "10:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "11:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "12:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "01:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "02:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "03:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "04:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "05:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "06:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "07:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "08:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "09:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "10:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "11:00 PM", "disponible": true, "periodo": "NOCHE" }
+      ]
+    },
+    {
+      "id": "2026-04-25",
+      "horarios": [
+        { "hora": "06:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "07:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "08:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "09:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "10:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "11:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "12:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "01:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "02:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "03:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "04:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "05:00 PM", "disponible": false, "periodo": "TARDE" },
+        { "hora": "06:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "07:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "08:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "09:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "10:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "11:00 PM", "disponible": true, "periodo": "NOCHE" }
+      ]
+    },
+    {
+      "id": "2026-04-26",
+      "horarios": [
+        { "hora": "06:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "07:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "08:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "09:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "10:00 AM", "disponible": false, "periodo": "MAÑANA" },
+        { "hora": "11:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "12:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "01:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "02:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "03:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "04:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "05:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "06:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "07:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "08:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "09:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "10:00 PM", "disponible": false, "periodo": "NOCHE" },
+        { "hora": "11:00 PM", "disponible": false, "periodo": "NOCHE" }
+      ]
+    },
+    {
+      "id": "2026-04-27",
+      "horarios": [
+        { "hora": "06:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "07:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "08:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "09:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "10:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "11:00 AM", "disponible": true, "periodo": "MAÑANA" },
+        { "hora": "12:00 PM", "disponible" : true, "periodo": "TARDE" },
+        { "hora": "01:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "02:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "03:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "04:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "05:00 PM", "disponible": true, "periodo": "TARDE" },
+        { "hora": "06:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "07:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "08:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "09:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "10:00 PM", "disponible": true, "periodo": "NOCHE" },
+        { "hora": "11:00 PM", "disponible": true, "periodo": "NOCHE" }
+      ]
+    }
+  ]
+}
